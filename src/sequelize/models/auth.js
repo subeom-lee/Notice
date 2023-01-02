@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     Auth.init(
         {
             authId: {
-                primaryKey: ture,
+                primaryKey: true,
                 type: DataTypes.INTEGER
             },
             email: DataTypes.STRING,
-            nickname: DataTypes.STRING,
-            password: DataTypes.STRING
+            password: DataTypes.STRING,
+            confirmPw: DataTypes.STRING
         },
         {
             sequelize,
