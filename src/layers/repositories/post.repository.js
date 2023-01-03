@@ -1,8 +1,9 @@
 const { Post } = require('../../models');
 
-const findAllPosts = async (postId) => {
+const findAllPosts = async () => {
     try {
-        await Post.findAll();
+        const findAllPosts = await Post.findAll({});
+        return findAllPosts;
     } catch (err) {
         console.log(err);
     }
