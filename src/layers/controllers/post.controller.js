@@ -9,7 +9,15 @@ const findAllPosts = async (req, res, next) => {
     }
 };
 
-const findOnePosts = async (req, res, next) => {};
+const findOnePosts = async (req, res, next) => {
+    const { postId } = req.params;
+    try {
+        const findOnePosts = await postService.findOnePosts(postId);
+        return res.status(200).json({ findOnePosts });
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 const createPost = async (req, res, next) => {
     const { title, content } = req.body;
