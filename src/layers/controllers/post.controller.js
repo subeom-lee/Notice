@@ -21,7 +21,16 @@ const createPost = async (req, res, next) => {
     }
 };
 
-const updatePost = async (req, res, next) => {};
+const updatePost = async (req, res, next) => {
+    const { postId } = req.params;
+    const { title, content } = req.body;
+    try {
+        const updatePost = await postService.updatePost(postId, title, content);
+        return res.status(201).json({ updatePost });
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 const deletePost = async (req, res, next) => {};
 

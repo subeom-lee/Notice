@@ -18,4 +18,13 @@ const createPost = async (title, content) => {
     }
 };
 
-module.exports = { findAllPosts, createPost };
+const updatePost = async (postId, title, content) => {
+    try {
+        const updatePost = await Post.update({ title, content }, { where: { postId } });
+        return updatePost;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+module.exports = { findAllPosts, createPost, updatePost };

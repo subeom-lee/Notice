@@ -10,7 +10,13 @@ const createPost = async (title, content) => {
     return createPost;
 };
 
+const updatePost = async (postId, title, content) => {
+    const updatePost = await postRepository.updatePost(postId, title, content);
+    return updatePost;
+};
+
 module.exports = {
     findAllPosts,
-    createPost
+    createPost,
+    updatePost
 };
