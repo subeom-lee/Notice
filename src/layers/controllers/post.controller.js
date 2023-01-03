@@ -1,13 +1,10 @@
 const postService = require('../services/post.service');
 
 const findAllPosts = async (req, res, next) => {
-    const { postId } = req.params;
-
     try {
-        await postService.findAllPosts(postId);
-        return res.status(200).json('게시물 전체 조회 성공');
+        const findAllPosts = await postService.findAllPosts();
+        return res.status(200).json({ findAllPosts });
     } catch (err) {
-        next();
         console.log(err);
     }
 };
