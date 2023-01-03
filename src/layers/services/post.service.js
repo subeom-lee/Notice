@@ -5,6 +5,11 @@ const findAllPosts = async () => {
     return findAllPosts;
 };
 
+const findOnePosts = async (postId) => {
+    const findOnePosts = await postRepository.findOnePosts(postId);
+    return findOnePosts;
+};
+
 const createPost = async (title, content) => {
     const createPost = await postRepository.createPost(title, content);
     return createPost;
@@ -21,6 +26,7 @@ const deletePost = async (postId) => {
 };
 module.exports = {
     findAllPosts,
+    findOnePosts,
     createPost,
     updatePost,
     deletePost
