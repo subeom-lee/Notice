@@ -32,7 +32,15 @@ const updatePost = async (req, res, next) => {
     }
 };
 
-const deletePost = async (req, res, next) => {};
+const deletePost = async (req, res, next) => {
+    const { postId } = req.params;
+    try {
+        const deletePost = await postService.deletePost(postId);
+        return res.status(200).json({ deletePost });
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 module.exports = {
     findAllPosts,

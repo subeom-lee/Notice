@@ -27,4 +27,12 @@ const updatePost = async (postId, title, content) => {
     }
 };
 
-module.exports = { findAllPosts, createPost, updatePost };
+const deletePost = async (postId) => {
+    try {
+        const deletePost = await Post.destroy({ where: { postId } });
+        return deletePost;
+    } catch (err) {
+        console.log(err);
+    }
+};
+module.exports = { findAllPosts, createPost, updatePost, deletePost };

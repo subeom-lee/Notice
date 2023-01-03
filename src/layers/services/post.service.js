@@ -15,8 +15,13 @@ const updatePost = async (postId, title, content) => {
     return updatePost;
 };
 
+const deletePost = async (postId) => {
+    const deletePost = await postRepository.deletePost(postId);
+    return deletePost;
+};
 module.exports = {
     findAllPosts,
     createPost,
-    updatePost
+    updatePost,
+    deletePost
 };
