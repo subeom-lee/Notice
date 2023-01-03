@@ -5,6 +5,12 @@ const findAllPosts = async () => {
     return findAllPosts;
 };
 
+const createPost = async (title, content) => {
+    const createPost = await postRepository.createPost(title, content);
+    return createPost;
+};
+
 module.exports = {
-    findAllPosts
+    findAllPosts,
+    createPost
 };
