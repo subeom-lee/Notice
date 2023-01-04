@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>All Notice</title>
+    </head>
+    <body>
+        <% for(var i = 0; i < data.length; i++) {%>
+        <h1><%= data[i].title %> <%= data[i].content %> <%= data[i].createdAt %></h1>
+        <% } %>
+        <div>
+            <button id="create-post-button">글 쓰러가기</button>
+        </div>
+    </body>
+    <script>
+        document.getElementById('create-post-button').addEventListener('click', function () {
+            window.location.href = '/api/post/write';
+        });
+    </script>
+</html>
