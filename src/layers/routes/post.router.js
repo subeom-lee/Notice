@@ -2,15 +2,17 @@ const express = require('express');
 const postRouter = express.Router();
 const postController = require('../controllers/post.controller');
 
-// 전체 게시물 조회
+// 게시물 전체조회
 postRouter.get('/', postController.findAllPosts);
-// 상세 게시물 조회
-postRouter.get('/detail/:postId', postController.findOnePosts);
+// 게시물 상세조회
+postRouter.get('/detail/:postId', postController.findOnePost);
 // 게시물 작성
 postRouter.post('/', postController.createPost);
 // 게시물 수정
 postRouter.put('/:postId', postController.updatePost);
 // 게시물 삭제
 postRouter.delete('/:postId', postController.deletePost);
+// 게시물 작성 페이지
+postRouter.get('/write', postController.writePost);
 
 module.exports = postRouter;

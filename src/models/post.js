@@ -14,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     Post.init(
         {
             PostId: {
+                autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
+                allowNull: false
             },
-            title: DataTypes.STRING,
-            content: DataTypes.STRING
+            title: { type: DataTypes.STRING, allowNull: false },
+            content: { type: DataTypes.STRING, allowNull: false }
         },
         {
             sequelize,

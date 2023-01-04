@@ -9,10 +9,10 @@ const findAllPosts = async () => {
     }
 };
 
-const findOnePosts = async (postId) => {
+const findOnePost = async (postId) => {
     try {
-        const findOnePosts = await Post.findOne({ where: { postId } });
-        return findOnePosts;
+        const findOnePost = await Post.findOne({ where: { postId } });
+        return findOnePost;
     } catch (err) {
         console.log(err);
     }
@@ -44,4 +44,5 @@ const deletePost = async (postId) => {
         console.log(err);
     }
 };
-module.exports = { findAllPosts, findOnePosts, createPost, updatePost, deletePost };
+
+module.exports = { findAllPosts, findOnePost, createPost, updatePost, deletePost };
