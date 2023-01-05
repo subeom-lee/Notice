@@ -23,7 +23,7 @@ const createPost = async (req, res, next) => {
     const { title, content } = req.body;
     try {
         await postService.createPost(title, content);
-        return res.redirect('/api/post');
+        return res.redirect('/api/post/completePost');
     } catch (err) {
         console.log(err);
     }
@@ -58,11 +58,20 @@ const writePost = async (req, res, next) => {
     }
 };
 
+const completePost = async (req, res, next) => {
+    try {
+        return res.render('completePost');
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 module.exports = {
     findAllPosts,
     findOnePost,
     createPost,
     updatePost,
     deletePost,
-    writePost
+    writePost,
+    completePost
 };
