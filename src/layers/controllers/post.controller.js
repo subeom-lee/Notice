@@ -4,6 +4,8 @@ const findAllPosts = async (req, res, next) => {
     try {
         const findAllPosts = await postService.findAllPosts();
         return res.render('findAllPosts', { data: findAllPosts });
+        // res.status(200).json({ data: findAllPosts });
+        // res.render('findAllPosts', { data: findAllPosts });
     } catch (err) {
         console.log(err);
     }
