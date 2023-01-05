@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Write post</title>
+    </head>
+    <body>
+        <form id="update-form" action="/api/post/<%= data.PostId %>" method="post">
+            <label for="title">Title:</label><br />
+            <input type="text" id="title" name="title" value="<%= data.title %>" /><br />
+            <br />
+            <label for="content">Content:</label><br />
+            <textarea id="content" name="content"><%= data.content %></textarea><br />
+            <br />
+            <input type="button" value="글 수정하기" onclick="updatePost()" />
+        </form>
+        <script>
+            function updatePost() {
+                console.log('<%= data.PostId %>');
+                let formData = new FormData();
+                formData.append('title', document.getElementById('title').value);
+                formData.append('content', document.getElementById('content').value);
+                fetch('/api/post/<%= data.PostId %>', {
+                    method: 'put',
+                    body: new URLSearchParams(formData)
+                })
+                    .then((res) => {
+                        alert('수정되었습니다.');
+                        window.location.href = '/api/post';
+                        return res.text();
+                    })
+                    .then((text) => {
+                        console.log(text);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        </script>
+    </body>
+</html>
