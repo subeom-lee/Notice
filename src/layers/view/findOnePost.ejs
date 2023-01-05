@@ -8,10 +8,14 @@
     </head>
     <body>
         <h1><%= data.title %> <%= data.content %> <%= data.createdAt %></h1>
+        <button id="update-post-button">수정</button>
         <form action="/api/post/<%= data.PostId %>" method="post">
             <button type="button" onclick="deletePost()">삭제</button>
         </form>
         <script>
+            document.getElementById('update-post-button').addEventListener('click', function () {
+                window.location.href = '/api/post/edit/<%= data.PostId %>';
+            });
             function deletePost() {
                 fetch('http://localhost:8080/api/post/<%= data.PostId %>', {
                     method: 'delete'
