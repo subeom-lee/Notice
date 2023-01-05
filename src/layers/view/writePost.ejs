@@ -19,9 +19,21 @@
                         <td><textarea name="content"></textarea></td>
                     </tr>
                     <td></td>
-                    <td colspan="2"><input type="submit" value="글 작성하기" /></td>
+                    <td colspan="2">
+                        <input type="submit" onclick="createPost()" value="글 작성하기" />
+                    </td>
                 </tbody>
             </table>
         </form>
+        <script>
+            function createPost() {
+                fetch('http://localhost:8080/api/post', {
+                    method: 'post'
+                }).then((res) => {
+                    alert('작성되었습니다.');
+                    window.location.href = '/api/post';
+                });
+            }
+        </script>
     </body>
 </html>

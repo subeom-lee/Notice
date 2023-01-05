@@ -14,7 +14,5 @@ postRouter.put('/:postId', postController.updatePost);
 postRouter.delete('/:postId', postController.deletePost);
 // 게시물 작성 페이지
 postRouter.get('/write', postController.writePost);
-// 게시물 작성 완료 페이지
-postRouter.get('/completePost', postController.completePost);
 
 module.exports = postRouter;

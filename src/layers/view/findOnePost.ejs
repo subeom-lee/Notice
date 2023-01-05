@@ -7,8 +7,19 @@
         <title>Post</title>
     </head>
     <body>
-          <p>
-              <h1><%= data.title %> <%= data.content %> <%= data.createdAt %></h1>
-          </p>
-  </body>
+        <h1><%= data.title %> <%= data.content %> <%= data.createdAt %></h1>
+        <form action="/api/post/<%= data.PostId %>" method="post">
+            <button type="button" onclick="deletePost()">삭제</button>
+        </form>
+        <script>
+            function deletePost() {
+                fetch('http://localhost:8080/api/post/<%= data.PostId %>', {
+                    method: 'delete'
+                }).then((res) => {
+                    alert('삭제되었습니다.');
+                    window.location.href = '/api/post';
+                });
+            }
+        </script>
+    </body>
 </html>

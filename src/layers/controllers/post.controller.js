@@ -25,7 +25,7 @@ const createPost = async (req, res, next) => {
     const { title, content } = req.body;
     try {
         await postService.createPost(title, content);
-        return res.redirect('/api/post/completePost');
+        return res.redirect('/api/post');
     } catch (err) {
         console.log(err);
     }
@@ -45,8 +45,8 @@ const updatePost = async (req, res, next) => {
 const deletePost = async (req, res, next) => {
     const { postId } = req.params;
     try {
-        const deletePost = await postService.deletePost(postId);
-        return res.render('findAllPosts');
+        await postService.deletePost(postId);
+        return res.redirect('/api/post');
     } catch (err) {
         console.log(err);
     }
@@ -60,13 +60,13 @@ const writePost = async (req, res, next) => {
     }
 };
 
-const completePost = async (req, res, next) => {
-    try {
-        return res.render('completePost');
-    } catch (err) {
-        console.log(err);
-    }
-};
+// const completePost = async (req, res, next) => {
+//     try {
+//         return res.render('completePost');
+//     } catch (err) {
+//         console.log(err);
+//     }
+// };
 
 module.exports = {
     findAllPosts,
@@ -74,6 +74,6 @@ module.exports = {
     createPost,
     updatePost,
     deletePost,
-    writePost,
-    completePost
+    writePost
+    // completePost
 };
