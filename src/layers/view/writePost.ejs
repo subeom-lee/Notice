@@ -7,33 +7,45 @@
         <title>Write post</title>
     </head>
     <body>
-        <form action="/api/post" , method="post">
+        <form id="create-post-form" action="/api/post" method="post">
             <table>
                 <tbody>
                     <tr>
                         <th>제목</th>
-                        <td><input type="text" name="title" /></td>
+                        <td><input type="text" name="title" required /></td>
                     </tr>
                     <tr>
                         <th>내용</th>
-                        <td><textarea name="content"></textarea></td>
+                        <td><textarea name="content" required></textarea></td>
                     </tr>
                     <td></td>
                     <td colspan="2">
-                        <input type="submit" onclick="createPost()" value="글 작성하기" />
+                        <input type="submit" value="글 작성하기" />
                     </td>
                 </tbody>
             </table>
         </form>
-        <script>
-            function createPost() {
-                fetch('http://localhost:8080/api/post', {
-                    method: 'post'
-                }).then((res) => {
+    </body>
+    <script>
+        document.getElementById('create-post-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const title = formData.get('title');
+            const content = formData.get('content');
+
+            fetch('http://localhost:8080/api/post', {
+                method: 'post',
+                body: JSON.stringify({ title, content }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((res) => {
+                if (res.status === 201) {
                     alert('작성되었습니다.');
                     window.location.href = '/api/post';
-                });
-            }
-        </script>
-    </body>
+                }
+            });
+        });
+    </script>
 </html>

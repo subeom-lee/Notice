@@ -6,6 +6,7 @@ const findAllPosts = async (req, res, next) => {
         return res.render('findAllPosts', { data: findAllPosts });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
@@ -16,16 +17,18 @@ const findOnePost = async (req, res, next) => {
         return res.render('findOnePost', { data: findOnePost });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
 const createPost = async (req, res, next) => {
     const { title, content } = req.body;
     try {
-        await postService.createPost(title, content);
-        return res.redirect('/api/post');
+        const createPost = await postService.createPost(title, content);
+        return res.status(201).json({ message: '게시글 작성 완료', data: { createPost } });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
@@ -33,20 +36,22 @@ const updatePost = async (req, res, next) => {
     const { postId } = req.params;
     const { title, content } = req.body;
     try {
-        await postService.updatePost(postId, title, content);
-        return res.status(201).redirect('/api/post');
+        const updatePost = await postService.updatePost(postId, title, content);
+        return res.status(201).json({ message: '게시글 수정 완료', data: { updatePost } });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
 const deletePost = async (req, res, next) => {
     const { postId } = req.params;
     try {
-        await postService.deletePost(postId);
-        return res.status(200).redirect('/api/post');
+        const deletePost = await postService.deletePost(postId);
+        return res.status(200).json({ message: '게시글 삭제 완료', data: { deletePost } });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
@@ -55,6 +60,7 @@ const writePost = async (req, res, next) => {
         return res.render('writePost');
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
@@ -65,6 +71,7 @@ const editPost = async (req, res, next) => {
         return res.render('editPost', { data: findOnePost });
     } catch (err) {
         console.log(err);
+        return res.status(500).json({ error: err });
     }
 };
 
