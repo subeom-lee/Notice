@@ -20,44 +20,41 @@
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"
         ></script>
+        <style>
+            body {
+                text-align: center;
+                background-color: antiquewhite;
+            }
+            button {
+                margin-top: 20px;
+            }
+        </style>
     </head>
-    <body style="text-align: center; background-color: antiquewhite">
+    <body>
         <form id="create-post-form" action="/api/post" method="post">
-            <table>
-                <tbody>
-                    <div>
-                        <tr>
-                            <th>제목</th>
-                            <td>
-                                <input
-                                    name="title"
-                                    placeholder="제목을 입력해주세요."
-                                    type="text"
-                                    style="width: 500px; height: 100px"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>내용</th>
-                            <td>
-                                <div>
-                                    <textarea
-                                        name="content"
-                                        placeholder="내용을 입력해주세요."
-                                        style="width: 500px; height: 300px; resize: none"
-                                        required
-                                    ></textarea>
-                                </div>
-                            </td>
-                        </tr>
-                    </div>
-                    <td></td>
-                    <td colspan="2">
-                        <input type="submit" value="글 작성하기" />
-                    </td>
-                </tbody>
-            </table>
+            <h2 style="font-size: 100px; margin-top: 70px; font-family: 'Dongle', sans-serif">
+                제목
+            </h2>
+            <input
+                name="title"
+                class="title-input"
+                placeholder="제목을 입력해주세요."
+                style="width: 500px; height: 100px"
+                required
+            />
+            <h2 style="font-size: 100px; margin-top: 10px; font-family: 'Dongle', sans-serif">
+                내용
+            </h2>
+            <textarea
+                name="content"
+                class="content-input"
+                placeholder="내용을 입력해주세요."
+                style="width: 500px; height: 300px; resize: none"
+                required
+            ></textarea>
+            <div colspan="2">
+                <button type="submit" class="btn btn-info">글 작성하기</button>
+            </div>
         </form>
     </body>
     <script>
