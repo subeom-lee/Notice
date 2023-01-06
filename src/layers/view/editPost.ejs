@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Write post</title>
     </head>
-    <body>
+    <body style="text-align: center; background-color: antiquewhite">
         <form id="update-form" action="/api/post/<%= data.PostId %>" method="post">
-            <label for="title">Title:</label><br />
+            <label for="title">제목</label><br />
             <input type="text" id="title" name="title" value="<%= data.title %>" /><br />
             <br />
-            <label for="content">Content:</label><br />
+            <label for="content">내용</label><br />
             <textarea id="content" name="content"><%= data.content %></textarea><br />
             <br />
             <input type="button" value="글 수정하기" onclick="updatePost()" />

@@ -3,10 +3,13 @@ const app = express();
 const { sequelize } = require('./models');
 const routerLoader = require('./layers/_router.loader');
 const bodyParser = require('body-parser');
+
+app.use('/api', express.json(), routerLoader);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/api', express.json(), routerLoader);
+app.use(express.static(__dirname + '/layers'));
 
 sequelize
     .sync({ force: false }) // true로 변경시 DB 삭제

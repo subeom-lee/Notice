@@ -2,7 +2,7 @@ const { Post } = require('../../models');
 
 const findAllPosts = async () => {
     try {
-        const findAllPosts = await Post.findAll({});
+        const findAllPosts = await Post.findAll({ order: [['createdAt', 'DESC']] });
         return findAllPosts;
     } catch (err) {
         console.log(err);

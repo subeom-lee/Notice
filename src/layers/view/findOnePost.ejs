@@ -5,9 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Post</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dongle&display=swap"
+            rel="stylesheet"
+        />
     </head>
-    <body>
-        <h1><%= data.title %> <%= data.content %> <%= data.createdAt %></h1>
+    <body style="text-align: center; background-color: antiquewhite">
+        <h1><%= data.title %></h1>
+        <h1><%= data.content %></h1>
+        <h2><%= data.createdAt %></h2>
         <button id="update-post-button">수정</button>
         <form action="/api/post/<%= data.PostId %>" method="post">
             <button type="button" onclick="deletePost()">삭제</button>
