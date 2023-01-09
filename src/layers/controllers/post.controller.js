@@ -35,6 +35,7 @@ const createPost = async (req, res, next) => {
 const updatePost = async (req, res, next) => {
     const { postId } = req.params;
     const { title, content } = req.body;
+    console.log(title, content);
     try {
         const updatePost = await postService.updatePost(postId, title, content);
         return res.status(201).json({ message: '게시글 수정 완료', data: { updatePost } });
