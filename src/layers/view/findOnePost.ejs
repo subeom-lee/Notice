@@ -7,17 +7,31 @@
         <title>Post</title>
         <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
     </head>
-    <body>
-        <h1><%= data.title %></h1>
-        <h1><%= data.content %></h1>
-        <h2><%= data.createdAt %></h2>
-        <div>
-            <button type="button" onclick="location.href='/api/post'">돌아가기</button>
-            <button id="update-post-button">수정</button>
-            <form action="/api/post/<%= data.PostId %>" method="post">
-                <button type="button" onclick="deletePost()">삭제</button>
-            </form>
-        </div>
+    <body style="text-align: center; margin-left: 600px; margin-right: 600px">
+        <fluent-card class="custom">
+            <h1 style="text-align: left; display: inline-block">제목:</h1>
+            <h1 style="display: inline-block"><%= data.title %></h1>
+            <fluent-divider></fluent-divider>
+            <h1 style="text-align: left; display: inline-block">내용:</h1>
+            <h1 style="display: inline-block"><%= data.content %></h1>
+            <fluent-divider></fluent-divider>
+            <h3 style="text-align: right"><%= data.createdAt %></h3>
+            <div style="display: flex; justify-content: right">
+                <fluent-button appearance="accent" id="update-post-button">수정</fluent-button>
+                <form
+                    action="/api/post/<%= data.PostId %>"
+                    method="post"
+                    style="display: flex; justify-content: center"
+                >
+                    <fluent-button appearance="accent" type="button" onclick="deletePost()"
+                        >삭제</fluent-button
+                    >
+                </form>
+            </div>
+            <fluent-button appearance="accent" type="button" onclick="location.href='/api/post'"
+                >목록</fluent-button
+            >
+        </fluent-card>
         <script>
             document.getElementById('update-post-button').addEventListener('click', function () {
                 window.location.href = '/api/post/edit/<%= data.PostId %>';
