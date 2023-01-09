@@ -5,50 +5,25 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Write post</title>
-        <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
     </head>
-    <body style="text-align: center; margin-left: 600px; margin-right: 600px">
-        <fluent-card class="custom">
-            <form id="create-post-form" action="/api/post" method="post">
-                <h1>글 쓰기</h1>
-                <fluent-divider></fluent-divider>
-                <fluent-text-field
-                    appearance="outline"
-                    name="title"
-                    placeholder="제목을 입력해주세요."
-                    required
-                ></fluent-text-field>
-                <h1>내용</h1>
-                <fluent-divider></fluent-divider>
-                <fluent-text-area
-                    name="content"
-                    placeholder="내용을 입력해주세요."
-                    required
-                ></fluent-text-area>
-                <div style="display: flex; justify-content: center">
-                    <div>
-                        <fluent-button
-                            appearance="accent"
-                            type="button"
-                            onclick="location.href='/api/post'"
-                            >목록</fluent-button
-                        >
-                    </div>
-                    <div colspan="2">
-                        <fluent-button appearance="accent" type="submit">작성</fluent-button>
-                    </div>
-                </div>
-            </form>
-        </fluent-card>
+    <body>
+        <form id="create-post-form" action="/api/post" method="post">
+            <h2>제목</h2>
+            <input name="title" placeholder="제목을 입력해주세요." required />
+            <h2>내용</h2>
+            <textarea name="content" placeholder="내용을 입력해주세요." required></textarea>
+            <button type="button" onclick="location.href='/api/post'">목록</button>
+            <div colspan="2">
+                <button type="submit">글 작성하기</button>
+            </div>
+        </form>
     </body>
     <script>
         document.getElementById('create-post-form').addEventListener('submit', (event) => {
             event.preventDefault();
-
             const formData = new FormData(event.target);
             const title = formData.get('title');
             const content = formData.get('content');
-
             fetch('http://localhost:8080/api/post', {
                 method: 'post',
                 body: JSON.stringify({ title, content }),
