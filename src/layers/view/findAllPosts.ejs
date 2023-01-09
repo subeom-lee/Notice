@@ -5,29 +5,41 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>All Post</title>
+        <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
     </head>
-    <body>
+    <body style="text-align: center">
         <h1>전체 게시물 조회</h1>
-        <table>
-            <thead>
-                <th>제목</th>
-                <th>작성일</th>
-            </thead>
-            <tbody>
-                <% for(var i = 0; i < data.length; i++) {%>
-                <tr>
-                    <td>
-                        <a href="/api/post/detail/<%= data[i].PostId %>"> <%= data[i].title %></a>
-                    </td>
-                    <td><%= data[i].createdAt %></td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
+        <fluent-select title="Select a section">
+            <fluent-option value="0">보기</fluent-option>
+            <fluent-option value="1">최신순으로 보기</fluent-option>
+            <fluent-option value="2">인기순으로 보기</fluent-option>
+            <fluent-option value="3">추천순으로 보기</fluent-option>
+        </fluent-select>
+        <fluent-data-grid style="margin-left: 600px; margin-right: 600px">
+            <fluent-data-grid-row style="display: flex; justify-content: center">
+                <fluent-data-grid-cell style="display: flex; justify-content: center"
+                    >제목</fluent-data-grid-cell
+                >
+                <fluent-data-grid-cell>작성일</fluent-data-grid-cell>
+            </fluent-data-grid-row>
+            <% for(var i = 0; i < data.length; i++) {%>
+            <fluent-data-grid-row style="display: flex; justify-content: center">
+                <fluent-data-grid-cell>
+                    <a href="/api/post/detail/<%= data[i].PostId %>"> <%= data[i].title %></a>
+                </fluent-data-grid-cell>
+                <fluent-data-grid-cell><%= data[i].createdAt %></fluent-data-grid-cell>
+            </fluent-data-grid-row>
+            <% } %>
+        </fluent-data-grid>
+        <div style="display: flex; justify-content: center">
+            <fluent-text-field
+                appearance="outline"
+                placeholder="검색어를 입력해주세요."
+            ></fluent-text-field>
+            <fluent-button appearance="accent">검색</fluent-button>
+        </div>
         <div>
-            <input type="text" placeholder="제목을 입력해주세요" />
-            <button>검색</button>
-            <button id="create-post-button">글 쓰러가기</button>
+            <fluent-button appearance="accent" id="create-post-button">글 쓰러가기</fluent-button>
         </div>
         <div role="toolbar" aria-label="Toolbar with button groups"></div>
     </body>
