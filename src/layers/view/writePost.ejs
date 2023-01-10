@@ -7,17 +7,39 @@
         <title>Write post</title>
         <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
     </head>
-    <body>
-        <form id="create-post-form" action="/api/post" method="post">
-            <h2>제목</h2>
-            <input name="title" placeholder="제목을 입력해주세요." required />
-            <h2>내용</h2>
-            <textarea name="content" placeholder="내용을 입력해주세요." required></textarea>
-            <button type="button" onclick="location.href='/api/post'">돌아가기</button>
-            <div colspan="2">
-                <button type="submit">글 작성하기</button>
-            </div>
-        </form>
+    <body style="text-align: center; margin-left: 600px; margin-right: 600px">
+        <fluent-card class="custom">
+            <form id="create-post-form" action="/api/post" method="post">
+                <h1>글 쓰기</h1>
+                <fluent-divider></fluent-divider>
+                <fluent-text-field
+                    appearance="outline"
+                    name="title"
+                    placeholder="제목을 입력해주세요."
+                    required
+                ></fluent-text-field>
+                <h1>내용</h1>
+                <fluent-divider></fluent-divider>
+                <fluent-text-area
+                    name="content"
+                    placeholder="내용을 입력해주세요."
+                    required
+                ></fluent-text-area>
+                <div style="display: flex; justify-content: center">
+                    <div>
+                        <fluent-button
+                            appearance="accent"
+                            type="button"
+                            onclick="location.href='/api/post'"
+                            >목록</fluent-button
+                        >
+                    </div>
+                    <div colspan="2">
+                        <fluent-button appearance="accent" type="submit">작성</fluent-button>
+                    </div>
+                </div>
+            </form>
+        </fluent-card>
     </body>
     <script>
         document.getElementById('create-post-form').addEventListener('submit', (event) => {

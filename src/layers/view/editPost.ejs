@@ -7,19 +7,39 @@
         <title>Edit post</title>
         <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
     </head>
-    <body>
+    <body style="text-align: center; margin-left: 600px; margin-right: 600px">
         <form id="update-form" action="/api/post/<%= data.PostId %>" method="post">
-            <label for="title">제목</label><br />
-            <input type="text" id="title" name="title" value="<%= data.title %>" required /><br />
-            <br />
-            <label for="content">내용</label><br />
-            <textarea id="content" name="content" required><%= data.content %></textarea><br />
-            <br />
-            <button type="button" onclick="location.href='/api/post/detail/<%= data.PostId %>'">
-                돌아가기
-            </button>
-            <div colspan="2">
-                <button type="submit">글 수정하기</button>
+            <h1 for="title">제목</h1>
+            <fluent-divider></fluent-divider>
+            <fluent-text-field
+                appearance="outline"
+                type="text"
+                id="title"
+                name="title"
+                value="<%= data.title %>"
+                required
+            ></fluent-text-field>
+            <h1 for="content">내용</h1>
+            <fluent-divider></fluent-divider>
+            <fluent-text-area
+                id="content"
+                name="content"
+                value="<%= data.content %>"
+                required
+            ></fluent-text-area>
+            <div style="display: flex; justify-content: center">
+                <div>
+                    <fluent-button
+                        appearance="accent"
+                        type="button"
+                        onclick="location.href='/api/post/detail/<%= data.PostId %>'"
+                    >
+                        목록
+                    </fluent-button>
+                </div>
+                <div colspan="2">
+                    <fluent-button appearance="accent" type="submit">수정</fluent-button>
+                </div>
             </div>
         </form>
         <script>
